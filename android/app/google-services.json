@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "861667218027",
+    "project_id": "nextgenbullion",
+    "storage_bucket": "nextgenbullion.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861667218027:android:22739ee958ee7242cdd72e",
+        "android_client_info": {
+          "package_name": "com.prioritygoldplus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmnKggMzVpTpxTOdq-WmBedeCIBUHmSO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
