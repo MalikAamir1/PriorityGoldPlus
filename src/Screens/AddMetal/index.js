@@ -73,6 +73,19 @@ export const AddMetal = () => {
   const [quantity, setQuantity] = useState(0);
   const [acquisitionCost, setAcquisitionCost] = useState(0);
   const [purchaseDate, setPurchaseDate] = useState();
+  console.log('purchaseDate', purchaseDate)
+
+  const dateObject = new Date(purchaseDate);
+
+// Get year, month, and day
+const year = dateObject.getFullYear();
+const month = (dateObject.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+const day = dateObject.getDate().toString().padStart(2, '0');
+
+// Create the formatted date string
+const dateToApi = `${year}-${month}-${day}`;
+
+console.log('dateToApi', dateToApi);
 
   const [isModalVisible, setModalVisible] = useState(false);
   const [data, setData] = useState([]);
@@ -422,7 +435,7 @@ export const AddMetal = () => {
       formdata.append('ounces', ounce);
       formdata.append('metal_quantity', quantity);
       formdata.append('acquisition_cost', acquisitionCost);
-      formdata.append('purchase_date', purchaseDate);
+      formdata.append('purchase_date', dateToApi);
       formdata.append('metal_value', acquisitionCost);
 
       // All variables have values
@@ -430,6 +443,7 @@ export const AddMetal = () => {
 
       setloader(true);
 
+      console.log('formdata before', formdata);
       postRequestWithToken(
         `${BASE_URL}/portfolio/add-portfolio/`,
         formdata,
@@ -614,7 +628,7 @@ export const AddMetal = () => {
               <View style={{ marginTop: 5 }}>
                 <DropdownComponent
                   data={arrayOfMetal}
-                  defaultValue={'   ----'}
+                  defaultValue={'----'}
                   value={selectedMetal}
                   setValue={setSelectedMetal}
                 />
@@ -639,7 +653,7 @@ export const AddMetal = () => {
             <View style={{ marginTop: 5 }}>
               <DropdownComponent
                 data={arrayOfGrade}
-                defaultValue={'   ----'}
+                defaultValue={'----'}
                 value={selectedGrade}
                 setValue={setSelectedGrade}
               />
@@ -662,7 +676,7 @@ export const AddMetal = () => {
             />
             <DropdownComponent
               data={arrayOfProductFamily}
-              defaultValue={'   ----'}
+              defaultValue={'----'}
               value={selectedProductFamily}
               setValue={setSelectedProductFamily}
             />
@@ -684,7 +698,7 @@ export const AddMetal = () => {
             />
             <DropdownComponent
               data={arrayOfProduct}
-              defaultValue={'   ----'}
+              defaultValue={'----'}
               value={selectedProduct}
               setValue={setSelectedProduct}
             />
@@ -722,7 +736,7 @@ export const AddMetal = () => {
               // height: 40,
             }}>
             <TextInput
-              placeholder="  0.00"
+              placeholder="0.00"
               keyboardType="number-pad"
               contextMenuHidden={true}
               autoCapitalize={'none'}
@@ -754,7 +768,7 @@ export const AddMetal = () => {
               placeholderTextColor={'#667080'}
             />
             <TextInput
-              placeholder="  0"
+              placeholder="0"
               keyboardType="number-pad"
               contextMenuHidden={true}
               autoCapitalize={'none'}
@@ -786,22 +800,22 @@ export const AddMetal = () => {
             />
           </View>
 
-          <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+          {/* <View style={{ flexDirection: 'row', marginBottom: 10 }}>
             <View style={{ width: '50%' }}>
               {ounceError && (
                 <View style={{ top: 10, left: 5 }}>
                   <Text style={{ color: 'red', fontSize: 13 }}>{ounceError}</Text>
                 </View>
               )}
-            </View>
-            <View style={{ width: '48%' }}>
+            </View> */}
+            <View style={{ width: '48%', marginLeft: 'auto' }}>
               {quantityError && (
                 <View style={{ top: 10, left: 8 }}>
                   <Text style={{ color: 'red', fontSize: 13 }}>{quantityError}</Text>
                 </View>
               )}
             </View>
-          </View>
+          {/* </View> */}
 
           <View>
             <Heading
@@ -814,7 +828,7 @@ export const AddMetal = () => {
               ml={10}
             />
             <TextInput
-              placeholder="   0.00"
+              placeholder="0.00"
               keyboardType="number-pad"
               contextMenuHidden={true}
               autoCapitalize={'none'}

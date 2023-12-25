@@ -39,6 +39,7 @@ export const EditMetal = ({ route }) => {
   // console.log('route.params on edit metal', route.params.item);
   const AuthReducer = useSelector(state => state.AuthReducer);
   const dataFromParams = route.params.item;
+  console.log('route.params on edit metal', dataFromParams);
 
   const [selectedMetal, setSelectedMetal] = useState(
     dataFromParams?.metal_name,
@@ -233,11 +234,9 @@ export const EditMetal = ({ route }) => {
     // if (!purchaseDate) emptyVariables.push('PurchaseDate');
     if (!quantity) {
       setQuantityError('Quantity cannot be Empty');
-    } else if (quantity == 0) {
-      setQuantityError('Quantity cannot be 0');
+    } else if (quantity <= 0) {
+      setQuantityError('Quantity must be greater than 0');
     } else {
-
-
       const inputDate = purchaseDate;
       const dateParts = inputDate.split('/');
       const formattedDate = `${dateParts[2]}-${dateParts[0]}-${dateParts[1]}`;
@@ -579,10 +578,11 @@ export const EditMetal = ({ route }) => {
                   placeholderTextColor={'#667080'}
                 />
                 <TextInput
-                  placeholder="1"
-                  value={quantity}
+                  placeholder="0"
+                  value={quantity.toString()}
                   onChangeText={setQuantity}
                   // disabled={true}
+                  // editable={false}
                   keyboardType="number-pad"
                   style={{
                     backgroundColor: 'white',
@@ -606,6 +606,13 @@ export const EditMetal = ({ route }) => {
                   underlineColor={'transparent'}
                   placeholderTextColor={'#667080'}
                 />
+              </View>
+              <View style={{ marginLeft: 'auto', width: '48%'}}>
+                {quantityError && (
+                  <View style={{ top: 10, left: 8 }}>
+                    <Text style={{ color: 'red', fontSize: 13 }}>{quantityError}</Text>
+                  </View>
+                )}
               </View>
               <View
                 style={

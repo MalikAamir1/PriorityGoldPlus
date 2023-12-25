@@ -74,7 +74,7 @@ export default function Input(props) {
                 disabled={props.disabled}>
                 <Feather
                   name={notPressed ? 'eye-off' : 'eye'}
-                  style={{fontWeight: '900'}}
+                  // style={{fontWeight: '900'}}
                   color={'#BA7607'}
                   size={24}
                 />

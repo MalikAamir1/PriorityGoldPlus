@@ -278,7 +278,7 @@ export const OtpScreen = ({route}) => {
                         textDecorationLine: 'underline',
                         fontWeight: 'bold',
                         color: '#514C4A',
-                        fontWeight: 'bold',
+                        // fontWeight: 'bold',
                       }}>
                       Resend
                     </Text>

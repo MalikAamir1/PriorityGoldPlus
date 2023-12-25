@@ -104,7 +104,7 @@ const TimerCircle = (props) => {
             y={textPosition + 8} // Adjust the value to vertically center the text
             // textAnchor="middle"
             fontSize={29}
-            fontWeight="bold"
+            // fontWeight="bold"
             fill="#514C4A">
             {`00:${props.seconds < 10 ? `0${props.seconds}` : props.seconds}`}
           </Text>
